@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,6 +23,11 @@ public class BookController {
 
     BookController(BookRepository book) {
         this.book = book;
+    }
+
+    @GetMapping(path = "/book")
+    public @ResponseBody Optional<Book> GetById(@RequestParam Long id) {
+        return this.book.findById(id);
     }
 
     @GetMapping(path = "/book")
