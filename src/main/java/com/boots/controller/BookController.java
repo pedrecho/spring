@@ -25,8 +25,8 @@ public class BookController {
         this.book = book;
     }
 
-    @GetMapping(path = "/book")
-    public @ResponseBody Optional<Book> GetById(@RequestParam Long id) {
+    @GetMapping(path = "/book/{id}")
+    public @ResponseBody Optional<Book> GetById(@PathVariable(name = "id") Long id) {
         return this.book.findById(id);
     }
 
