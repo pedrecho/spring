@@ -1,3 +1,4 @@
+
 package com.boots.controller;
 
 
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 public class BookController {
@@ -30,6 +30,11 @@ public class BookController {
         return this.book.findById(id);
     }
 
+    @PostMapping(path = "/book/{id}")
+    public HttpStatus Delete(@PathVariable(name = "id") Long id) {
+        return bookService.Delete(id);
+    }
+
     @GetMapping(path = "/book")
     public @ResponseBody List<Book> GetAll() {
         return this.book.findAll();
@@ -38,11 +43,6 @@ public class BookController {
     @PostMapping(path = "/book")
     public HttpStatus Save(Book book) {
         return bookService.Save(book);
-    }
-
-    @DeleteMapping(path = "/book")
-    public HttpStatus Delete(Book book) {
-        return bookService.Delete(book.getId());
     }
 
 //    @PutMapping(path = "/book")
